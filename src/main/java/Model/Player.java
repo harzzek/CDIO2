@@ -12,11 +12,12 @@ public class Player {
     private GUI_Player player;
 
     //constructor
-    public Player(int id, String name,GUI_Player player){
+    public Player(int id, String name,GUI_Player player,GUI_Car car){
         this.name = name;
         this.id = id;
         this.balance = 1000;
         this.player = player;
+        this.car = car;
     }
 
     //Method for updating players score
