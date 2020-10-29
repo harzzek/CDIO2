@@ -15,7 +15,7 @@ public class GameBoard
 
     public GUI_Field[] createFields()
     {
-        fields[0] = new GUI_Start("Start","This is were you start stuped","Well what can i say?", Color.RED,Color.red);
+        fields[0] = new GUI_Start("Start","This is were you start stuped","Well what can i say?", Color.RED,Color.black);
         for (int i = 1; i < fields.length; i++)
         {
             fields[i] = new GUI_Street();
@@ -27,6 +27,6 @@ public class GameBoard
         return fields;
     }
 
-    public String
+
 
 }
