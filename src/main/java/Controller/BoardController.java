@@ -5,8 +5,13 @@ import gui_fields.GUI_Field;
 
 public class BoardController
 {
-    public GameBoard createGameBoard(GUI_Field[] fields)
+    public BoardController()
     {
-        return new GameBoard(fields);
+
+    }
+
+    public GameBoard createGameBoard()
+    {
+        return new GameBoard();
     }
 }

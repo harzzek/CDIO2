@@ -17,10 +17,9 @@ public class GameManager
     {
         DiceController diceController = new DiceController();
         raffleCup = diceController.createRaffleCup();
-        GUI_Field[] fields = new GUI_Field[12];
         BoardController boardController = new BoardController();
-        gameBoard = boardController.createGameBoard(fields);
-        gui = new GUI(fields);
+        gameBoard = boardController.createGameBoard();
+        gui = new GUI(gameBoard.createFields());
 
     }
 
