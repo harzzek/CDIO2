@@ -1,6 +1,10 @@
 package Controller;
 
 import Model.Player;
+import gui_fields.GUI_Car;
+import gui_fields.GUI_Player;
+
+import java.util.ArrayList;
 
 public class PlayerController {
 
@@ -8,7 +12,14 @@ public class PlayerController {
 
     public Player createPlayer(int id, String name)
     {
-        Player player = new Player(id,name);
+        Player player = new Player(id,name,new GUI_Player(name,1000,new GUI_Car()));
+        if(player.getId() == 1)
+        {
+            players[0]=player;
+        }else
+            {
+                players[1]=player;
+            }
         return player;
     }
 
@@ -17,9 +28,10 @@ public class PlayerController {
         Player player = null;
         for (int i = 0; i < players.length; i++)
         {
-            if(players[i].getName() == name)
+            if(players[i].getName().equals(name))
             {
                 player = players[i];
+                break;
             }
         }
         return player;
@@ -29,7 +41,7 @@ public class PlayerController {
     {
         for (int i = 0; i < players.length; i++)
         {
-            if(players[i].getName() == name)
+            if(players[i].getName().equals(name))
             {
                 players[i].updateScore(newScore);
             }

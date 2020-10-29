@@ -8,8 +8,6 @@ import java.awt.*;
 public class Square {
 
     private int id;
-
-
     private GUI_Field type;
     private int points;
     private String name;

@@ -1,5 +1,4 @@
 import Controller.GameManager;
-import gui_main.GUI;
 
 public class Application {
 

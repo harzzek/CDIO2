@@ -2,17 +2,16 @@ package Controller;
 
 import Model.GameBoard;
 import Model.RaffleCup;
-import gui_fields.GUI_Field;
+import gui_fields.GUI_Player;
 import gui_main.GUI;
-
 import java.awt.*;
-import java.security.Guard;
 
 public class GameManager
 {
     private RaffleCup raffleCup;
     private GUI gui;
     private GameBoard gameBoard;
+    private PlayerController playerController = new PlayerController();
 
     public GameManager()
     {
@@ -21,19 +20,21 @@ public class GameManager
         BoardController boardController = new BoardController();
         gameBoard = boardController.createGameBoard();
         gui = new GUI(gameBoard.createFields(), Color.LIGHT_GRAY);
-
-
     }
 
     public void round()
     {
-        String s = "";
+        String s = "Roll";
+        String userInput = gui.getUserString("Player 1 name");
+        playerController.createPlayer(1,userInput);
+        gui.addPlayer(playerController.readPlayer(userInput).getPlayer());
+        userInput = gui.getUserString("Player 2 name");
+        playerController.createPlayer(2,userInput);
+        gui.addPlayer(playerController.readPlayer(userInput).getPlayer());
 
-        s = gui.getUserButtonPressed("Roll","Roll");
         while (checkStringBoolean(s))
         {
             gui.setDice(raffleCup.roll()[0], raffleCup.roll()[1]);
-
 
             s = gui.getUserButtonPressed("roll","Roll");
         }
