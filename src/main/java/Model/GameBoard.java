@@ -19,6 +19,7 @@ public class GameBoard
         {
             fields[i].setBackGroundColor(Color.BLACK);
             fields[i].setForeGroundColor(Color.BLUE);
+
         }
         return null;
     }

@@ -7,7 +7,7 @@ public class Square {
     private int id;
     private GUI_Field type;
     private int points;
-
+//
     public Square(GUI_Field type,int id,int points)
     {
         this.id = id;
