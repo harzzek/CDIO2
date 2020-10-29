@@ -27,6 +27,14 @@ public class GameBoard
         return fields;
     }
 
+    public Square createSquare()
+    {
+        int x;
+        int y;
+        Square square = new Square(GUI_Street,x,y);
+
+    }
+
 
 
 }
