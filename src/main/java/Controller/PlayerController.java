@@ -4,8 +4,6 @@ import Model.Player;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
-import java.util.ArrayList;
-
 public class PlayerController {
 
     private Player[] players = new Player[2];

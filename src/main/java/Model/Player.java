@@ -2,6 +2,7 @@ package Model;
 
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
+import java.awt.*;
 
 public class Player {
     private String name;
@@ -15,7 +16,6 @@ public class Player {
         this.name = name;
         this.id = id;
         this.balance = 1000;
-        this.car = car;
         this.player = player;
     }
 
@@ -39,4 +39,6 @@ public class Player {
     public GUI_Player getPlayer() {
         return player;
     }
+
+
 }

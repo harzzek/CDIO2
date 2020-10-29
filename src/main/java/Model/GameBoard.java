@@ -21,6 +21,7 @@ public class GameBoard
 
             fields[i] = squares[i].getType();
         }
+
         return fields;
     }
 
