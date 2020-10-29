@@ -7,14 +7,14 @@ public class GameBoard
 {
 
     private GUI_Field[] fields = new GUI_Field[12];
-    public Square[] squares = new Square[12];
+    private Square[] squares = new Square[12];
     public GameBoard()
     {
+        createSquare();
     }
 
     public GUI_Field[] createFields()
     {
-        createSquare();
         for (int i = 0; i < fields.length; i++)
         {
 
@@ -24,8 +24,8 @@ public class GameBoard
         return fields;
     }
 
-    public GUI_Field[] getFields() {
-        return fields;
+    public GUI_Field getFields(int placement) {
+        return fields[placement];
     }
 
     public void createSquare()
@@ -45,8 +45,13 @@ public class GameBoard
 
     }
 
-    private int getSquarePoint(Square square) {
-    return Integer.getInteger(square.getPoints());
+    public int getSquarePoint(int placement) {
+        return squares[placement].getPoints();
+    }
+
+    public String getSquareDesc(int placement)
+    {
+        return squares[placement].getDescription();
     }
 
 }

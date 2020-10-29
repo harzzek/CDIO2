@@ -42,14 +42,14 @@ public class PlayerController {
         return players;
     }
 
-    public void updateScore(String name, int newScore)
+    public void updateScore(Player player, int newScore)
     {
-        readPlayerByName(name).updateScore(newScore);
+        player.updateScore(newScore);
     }
 
-    public void updatePlayerPlacement(String name, int newPlacement)
+    public void updatePlayerPlacement(Player player, int newPlacement)
     {
-        readPlayerByName(name).updatePlacement(newPlacement);
+        player.updatePlacement(newPlacement);
 
     }
 }

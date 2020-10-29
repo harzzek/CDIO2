@@ -28,7 +28,7 @@ public class Square {
 
     public GUI_Field getType()
     {
-        return new GUI_Street(name, "", description, getPoints(), bgColor, Color.BLACK);
+        return new GUI_Street(name, "", description, getPointsString(), bgColor, Color.BLACK);
     }
 
     public String getId() {
@@ -36,8 +36,13 @@ public class Square {
 
     }
 
-    public String getPoints() {
+    public String getPointsString() {
         return String.valueOf(points);
+    }
+
+    public int getPoints()
+    {
+        return points;
     }
 
     public String getName() {

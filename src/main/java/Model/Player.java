@@ -48,7 +48,7 @@ public class Player {
     public void updatePlacement(int newPlacement)
     {
         int rest;
-        if(placement+newPlacement < 12)
+        if(placement+newPlacement >= 12)
         {
             rest = placement+newPlacement - 12;
             placement = rest;
@@ -57,5 +57,10 @@ public class Player {
         }
     }
 
-//
+
+    public int getPlacement() {
+        return placement;
+    }
+
+
 }
