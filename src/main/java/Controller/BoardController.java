@@ -5,10 +5,6 @@ import gui_fields.GUI_Field;
 
 public class BoardController
 {
-    public BoardController()
-    {
-
-    }
 
     public GameBoard createGameBoard()
     {

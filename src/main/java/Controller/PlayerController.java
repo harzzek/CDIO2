@@ -40,12 +40,12 @@ public class PlayerController {
 
     public void updateScore(String name, int newScore)
     {
-        for (int i = 0; i < players.length; i++)
-        {
-            if(players[i].getName().equals(name))
-            {
-                players[i].updateScore(newScore);
-            }
-        }
+        readPlayer(name).updateScore(newScore);
+    }
+
+    public void updatePlayerPlacement(String name, int newPlacement)
+    {
+        readPlayer(name).updatePlacement(newPlacement);
+
     }
 }
