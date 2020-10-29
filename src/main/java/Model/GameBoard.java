@@ -3,7 +3,6 @@ package Model;
 import gui_fields.*;
 
 import java.awt.*;
-
 public class GameBoard
 {
 
@@ -46,6 +45,8 @@ public class GameBoard
 
     }
 
-
+    private int getSquarePoint(Square square) {
+    return Integer.getInteger(square.getPoints());
+    }
 
 }
