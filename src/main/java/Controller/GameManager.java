@@ -5,6 +5,7 @@ import Model.RaffleCup;
 import gui_fields.GUI_Field;
 import gui_main.GUI;
 
+import java.awt.*;
 import java.security.Guard;
 
 public class GameManager
@@ -19,7 +20,8 @@ public class GameManager
         raffleCup = diceController.createRaffleCup();
         BoardController boardController = new BoardController();
         gameBoard = boardController.createGameBoard();
-        gui = new GUI(gameBoard.createFields());
+        gui = new GUI(gameBoard.createFields(), Color.LIGHT_GRAY);
+
 
     }
 
