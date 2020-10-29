@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.GameBoard;
+import Model.Player;
 import Model.RaffleCup;
 import gui_fields.GUI_Car;
 import gui_main.GUI;
@@ -13,8 +14,7 @@ public class GameManager
     private GameBoard gameBoard;
     private PlayerController playerController = new PlayerController();
 
-    public GameManager()
-    {
+    public GameManager() throws InterruptedException {
         DiceController diceController = new DiceController();
         raffleCup = diceController.createRaffleCup();
         BoardController boardController = new BoardController();
@@ -22,22 +22,36 @@ public class GameManager
         gui = new GUI(gameBoard.createFields(), Color.LIGHT_GRAY);
         String userInput = gui.getUserString("Player 1 name");
         playerController.createPlayer(1,userInput,Color.BLUE,Color.cyan, GUI_Car.Type.UFO, GUI_Car.Pattern.FILL);
-        gui.addPlayer(playerController.readPlayer(userInput).getPlayer());
+        gui.addPlayer(playerController.readPlayerByName(userInput).getPlayer());
         userInput = gui.getUserString("Player 2 name");
         playerController.createPlayer(2,userInput,Color.magenta,Color.cyan, GUI_Car.Type.RACECAR, GUI_Car.Pattern.FILL);
-        gui.addPlayer(playerController.readPlayer(userInput).getPlayer());
-        round();
+        gui.addPlayer(playerController.readPlayerByName(userInput).getPlayer());
+        while (!gameOver(playerController.readPlayersByID()[0]) || !gameOver(playerController.readPlayersByID()[1]))
+        {
+            if(!gameOver(playerController.readPlayersByID()[1])){
+                round(playerController.readPlayersByID()[0]);
+            }
+            if(!gameOver(playerController.readPlayersByID()[0]))
+            {
+                round(playerController.readPlayersByID()[1]);
+            }
+        }
     }
 
-    public void round()
+    public void round(Player player)
     {
-        String s = "Roll";
+        String s = gui.getUserButtonPressed("roll","Roll");
+        int dice1Value;
+        int dice2Value;
+        int totalValue;
 
-        while (checkStringBoolean(s))
+        if (checkStringBoolean(s))
         {
-            gui.setDice(raffleCup.roll()[0], raffleCup.roll()[1]);
+            dice1Value = raffleCup.roll()[0];
+            dice2Value = raffleCup.roll()[1];
+            totalValue = dice1Value + dice2Value;
 
-            s = gui.getUserButtonPressed("roll","Roll");
+            gui.setDice(dice1Value, dice2Value);
         }
 
     }
@@ -46,6 +60,15 @@ public class GameManager
     {
         if (s =="Roll")
         {
+            return true;
+        } else return false;
+    }
+
+    public boolean gameOver(Player player) throws InterruptedException {
+        if(player.getScore() >= 3000)
+        {
+            gui.showMessage(player.getName() + " has won!");
+            Thread.sleep(15000);
             return true;
         } else return false;
     }

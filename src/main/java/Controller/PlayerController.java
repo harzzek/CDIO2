@@ -24,7 +24,7 @@ public class PlayerController {
         return player;
     }
 
-    public Player readPlayer(String name)
+    public Player readPlayerByName(String name)
     {
         Player player = null;
         for (int i = 0; i < players.length; i++)
@@ -38,14 +38,18 @@ public class PlayerController {
         return player;
     }
 
+    public Player[] readPlayersByID() {
+        return players;
+    }
+
     public void updateScore(String name, int newScore)
     {
-        readPlayer(name).updateScore(newScore);
+        readPlayerByName(name).updateScore(newScore);
     }
 
     public void updatePlayerPlacement(String name, int newPlacement)
     {
-        readPlayer(name).updatePlacement(newPlacement);
+        readPlayerByName(name).updatePlacement(newPlacement);
 
     }
 }
