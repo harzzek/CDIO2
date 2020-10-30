@@ -42,10 +42,6 @@ public class PlayerController {
         return players;
     }
 
-    public void updateScore(Player player, int newScore)
-    {
-        player.updateScore(newScore);
-    }
 
     public void updatePlayerPlacement(Player player, int newPlacement)
     {

@@ -1,4 +1,5 @@
 import Controller.GameManager;
+import Controller.PlayerController;
 import Model.Player;
 import org.junit.Assert;
 import org.junit.Test;
@@ -43,5 +44,24 @@ public class PlayerTest
         Assert.assertTrue(playerWin);
     }
 
+    @Test
+    public void CheckIfPlacementOverTwelve()
+    {
+        //act
+        int placement = 6;
+        int newplacement = 7;
+        Player player = new Player();
+        PlayerController playerController = new PlayerController();
 
+        //arrange
+        player.updatePlacement(placement);
+        playerController.updatePlayerPlacement(player,newplacement);
+
+        //assert
+        Assert.assertEquals(1,player.getPlacement());
+
+
+    }
 }
+
+
