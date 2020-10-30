@@ -14,7 +14,7 @@ public class GameManager
     private GameBoard gameBoard;
     private PlayerController playerController = new PlayerController();
 
-    public GameManager() throws InterruptedException {
+    public GameManager() {
         DiceController diceController = new DiceController();
         raffleCup = diceController.createRaffleCup();
         BoardController boardController = new BoardController();
@@ -36,6 +36,11 @@ public class GameManager
                 round(playerController.readPlayersByID()[1]);
             }
         }
+    }
+
+    public GameManager(int toTest)
+    {
+
     }
 
     public void round(Player player)
@@ -72,7 +77,7 @@ public class GameManager
         } else return false;
     }
 
-    public boolean gameOver(Player player) throws InterruptedException {
+    public boolean gameOver(Player player){
         if(player.getScore() >= 3000)
         {
             gui.showMessage(player.getName() + " has won!");

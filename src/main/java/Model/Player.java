@@ -20,6 +20,11 @@ public class Player {
         this.car = car;
     }
 
+    public Player()
+    {
+
+    }
+
     //Method for updating players score
     public void updateScore(int balanceUpdate){
         if(balance+balanceUpdate < 0)
