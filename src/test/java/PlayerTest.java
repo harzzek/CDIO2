@@ -21,27 +21,28 @@ public class PlayerTest
         Assert.assertEquals(0,player.getScore());
 
     }
-    }
 
-    /*@Test
+    @Test
     public void CheckIfGameEndsAt3000Points()
     {
-        int pointsCounter=0;
-        int pointsUpdater = 1;
+        int pointsUpdater = 0;
+        int point = 1;
+        boolean playerWin = false;
 
-        GameManager gameManager = new GameManager(pointsCounter);
+        GameManager gameManager = new GameManager();
         Player player = new Player();
 
-        for(pointsCounter =0;pointsCounter < 3001;pointsCounter++)
+        for(pointsUpdater =0;pointsUpdater < 3001;pointsUpdater++)
         {
 
-            player.updateScore(pointsUpdater);
-            gameManager.gameOver(player);
-
+            player.updateScore(point);
+            if(gameManager.gameOver(player)){
+                playerWin = true;
+            }
         }
 
-        Assert.assertTrue(gameManager.gameOver(player));
+        Assert.assertTrue(playerWin);
     }
 
 
-}*/
+}
