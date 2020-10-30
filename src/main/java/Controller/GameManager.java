@@ -10,34 +10,43 @@ import java.awt.*;
 public class GameManager
 {
     private RaffleCup raffleCup;
-    private GUI gui;
     private GameBoard gameBoard;
     private PlayerController playerController = new PlayerController();
+    GUIHandler guiHandler;
 
     public GameManager() {
     }
 
     public void setupGame(){
         DiceController diceController = new DiceController();
-        raffleCup = diceController.createRaffleCup();
         BoardController boardController = new BoardController();
+
+        raffleCup = diceController.createRaffleCup();
         gameBoard = boardController.createGameBoard();
-        gui = new GUI(gameBoard.createFields(), Color.LIGHT_GRAY);
-        String userInput = gui.getUserString("Player 1 name");
+        guiHandler = new GUIHandler(new GUI(gameBoard.createFields(), Color.LIGHT_GRAY));
+        String userInput = guiHandler.getGui().getUserString("Player 1 name");
         playerController.createPlayer(1,userInput,Color.BLUE,Color.cyan, GUI_Car.Type.UFO, GUI_Car.Pattern.FILL);
-        gui.addPlayer(playerController.readPlayerByName(userInput).getPlayer());
-        userInput = gui.getUserString("Player 2 name");
+        guiHandler.getGui().addPlayer(playerController.readPlayerByName(userInput).getPlayer());
+        userInput = guiHandler.getGui().getUserString("Player 2 name");
         playerController.createPlayer(2,userInput,Color.magenta,Color.cyan, GUI_Car.Type.RACECAR, GUI_Car.Pattern.FILL);
-        gui.addPlayer(playerController.readPlayerByName(userInput).getPlayer());
+        guiHandler.getGui().addPlayer(playerController.readPlayerByName(userInput).getPlayer());
         while (!gameOver(playerController.readPlayersByID()[0]) || !gameOver(playerController.readPlayersByID()[1]))
         {
             if(!gameOver(playerController.readPlayersByID()[1])){
                 round(playerController.readPlayersByID()[0]);
-            }
+            }else
+                {
+                    guiHandler.getGui().showMessage(playerController.readPlayersByID()[1].getName() + " has won!");
+                    guiHandler.getGui().close();
+                }
             if(!gameOver(playerController.readPlayersByID()[0]))
             {
                 round(playerController.readPlayersByID()[1]);
-            }
+            }else
+                {
+                    guiHandler.getGui().showMessage(playerController.readPlayersByID()[0].getName() + " has won!");
+                    guiHandler.getGui().close();
+                }
 
         }
         System.exit(1);
@@ -45,7 +54,7 @@ public class GameManager
 
     public void round(Player player)
     {
-        String s = gui.getUserButtonPressed(null,"Roll");
+        String s = guiHandler.getGui().getUserButtonPressed(null,"Roll");
         int dice1Value;
         int dice2Value;
         int totalValue;
@@ -60,11 +69,11 @@ public class GameManager
                 gameBoard.getFields(player.getPlacement()).removeAllCars();
             }
             playerController.updatePlayerPlacement(player,totalValue);
-            gui.showMessage(gameBoard.getSquareDesc(player.getPlacement()));
+            guiHandler.getGui().showMessage(gameBoard.getSquareDesc(player.getPlacement()));
             gameBoard.getFields(player.getPlacement()).setCar(player.getPlayer(),true);
             player.updateScore(gameBoard.getSquarePoint(player.getPlacement()));
             player.getPlayer().setBalance(player.getScore());
-            gui.setDice(dice1Value, dice2Value);
+            guiHandler.getGui().setDice(dice1Value, dice2Value);
         }
 
     }
@@ -77,10 +86,7 @@ public class GameManager
     public boolean gameOver(Player player){
         if(player.getScore() >= 3000)
         {
-            gui.showMessage(player.getName() + " has won!");
-            gui.close();
             return true;
         } else return false;
     }
-
 }
