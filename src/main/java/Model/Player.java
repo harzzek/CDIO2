@@ -9,7 +9,7 @@ public class Player {
     private int balance;
     private GUI_Car car;
     private GUI_Player player;
-    private int placement = 0;
+    private int placement = -1;
 
     //constructor
     public Player(int id, String name,GUI_Player player,GUI_Car car){

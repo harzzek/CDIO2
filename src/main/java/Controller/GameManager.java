@@ -30,6 +30,8 @@ public class GameManager
         userInput = guiHandler.getGui().getUserString("Player 2 name");
         playerController.createPlayer(2,userInput,Color.magenta,Color.cyan, GUI_Car.Type.RACECAR, GUI_Car.Pattern.FILL);
         guiHandler.getGui().addPlayer(playerController.readPlayerByName(userInput).getPlayer());
+        firstTurn(playerController.readPlayersByID()[0]);
+        firstTurn(playerController.readPlayersByID()[1]);
         while (!gameOver(playerController.readPlayersByID()[0]) || !gameOver(playerController.readPlayersByID()[1]))
         {
             if(!gameOver(playerController.readPlayersByID()[1])){
@@ -54,34 +56,46 @@ public class GameManager
 
     public void round(Player player)
     {
-        String s = guiHandler.getGui().getUserButtonPressed(null,"Roll");
         int dice1Value;
         int dice2Value;
         int totalValue;
 
-        if (checkStringBoolean(s))
+        guiHandler.getGui().getUserButtonPressed(null,"Roll");
+        dice1Value = raffleCup.roll()[0];
+        dice2Value = raffleCup.roll()[1];
+        totalValue = dice1Value + dice2Value;
+        if(gameBoard.getFields(player.getPlacement()).hasCar(player.getPlayer()) || player.getPlacement() != -1)
         {
-            dice1Value = raffleCup.roll()[0];
-            dice2Value = raffleCup.roll()[1];
-            totalValue = dice1Value + dice2Value;
-            if(gameBoard.getFields(player.getPlacement()).hasCar(player.getPlayer()))
-            {
-                gameBoard.getFields(player.getPlacement()).removeAllCars();
-            }
-            playerController.updatePlayerPlacement(player,totalValue);
-            guiHandler.getGui().showMessage(gameBoard.getSquareDesc(player.getPlacement()));
-            gameBoard.getFields(player.getPlacement()).setCar(player.getPlayer(),true);
-            player.updateScore(gameBoard.getSquarePoint(player.getPlacement()));
-            player.getPlayer().setBalance(player.getScore());
-            guiHandler.getGui().setDice(dice1Value, dice2Value);
+            gameBoard.getFields(player.getPlacement()).removeAllCars();
         }
-
+        guiHandler.getGui().setDice(dice1Value, dice2Value);
+        playerController.updatePlayerPlacement(player,totalValue);
+        gameBoard.getFields(player.getPlacement()).setCar(player.getPlayer(),true);
+        player.updateScore(gameBoard.getSquarePoint(player.getPlacement()));
+        player.getPlayer().setBalance(player.getScore());
+        guiHandler.getGui().showMessage(gameBoard.getSquareDesc(player.getPlacement()));
     }
 
-    private boolean checkStringBoolean(String s)
+    public void firstTurn(Player player)
     {
-        return s == "Roll";
+        int dice1Value;
+        int dice2Value;
+        int totalValue;
+
+        guiHandler.getGui().getUserButtonPressed(null,"Roll");
+        dice1Value = raffleCup.roll()[0];
+        dice2Value = raffleCup.roll()[1];
+        totalValue = dice1Value + dice2Value;
+
+        guiHandler.getGui().setDice(dice1Value, dice2Value);
+        playerController.updatePlayerPlacement(player,totalValue);
+        gameBoard.getFields(player.getPlacement()).setCar(player.getPlayer(),true);
+        player.updateScore(gameBoard.getSquarePoint(player.getPlacement()));
+        player.getPlayer().setBalance(player.getScore());
+        guiHandler.getGui().showMessage(gameBoard.getSquareDesc(player.getPlacement()));
+
     }
+
 
     public boolean gameOver(Player player){
         if(player.getScore() >= 3000)
