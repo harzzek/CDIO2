@@ -12,17 +12,23 @@ public class GUIHandler {
     public void guiGetString(String userString){
         gi.getUserString(userString);
     }
+
     public void guiAddPlayer(GUI_Player Player){
-
-
+        gi.addPlayer(Player);
     }
+
     public void guiGetUserButtonPressed(String msg, String buttons){
+        gi.getUserButtonPressed(msg, buttons);
+
     }
     public void setDice(int faceValue1, int faceValue2){
+        gi.setDice(faceValue1, faceValue2);
 
     }
     public void guiShowMessage(String msg){
+        gi.showMessage(msg);
     }
+
     public void close(){
 
     }
