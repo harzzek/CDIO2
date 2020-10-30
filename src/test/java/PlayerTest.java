@@ -21,8 +21,9 @@ public class PlayerTest
         Assert.assertEquals(0,player.getScore());
 
     }
+    }
 
-    @Test
+    /*@Test
     public void CheckIfGameEndsAt3000Points()
     {
         int pointsCounter=0;
@@ -43,4 +44,4 @@ public class PlayerTest
     }
 
 
-}
+}*/

@@ -15,6 +15,9 @@ public class GameManager
     private PlayerController playerController = new PlayerController();
 
     public GameManager() {
+    }
+
+    public void setupGame(){
         DiceController diceController = new DiceController();
         raffleCup = diceController.createRaffleCup();
         BoardController boardController = new BoardController();
@@ -35,12 +38,9 @@ public class GameManager
             {
                 round(playerController.readPlayersByID()[1]);
             }
+
         }
-    }
-
-    public GameManager(int toTest)
-    {
-
+        System.exit(1);
     }
 
     public void round(Player player)
@@ -71,10 +71,7 @@ public class GameManager
 
     private boolean checkStringBoolean(String s)
     {
-        if (s =="Roll")
-        {
-            return true;
-        } else return false;
+        return s == "Roll";
     }
 
     public boolean gameOver(Player player){
@@ -82,7 +79,6 @@ public class GameManager
         {
             gui.showMessage(player.getName() + " has won!");
             gui.close();
-            System.exit(1);
             return true;
         } else return false;
     }
