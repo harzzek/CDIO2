@@ -1,5 +1,4 @@
 import Controller.GameManager;
-import Model.GameBoard;
 import Model.Player;
 import org.junit.Assert;
 import org.junit.Test;
